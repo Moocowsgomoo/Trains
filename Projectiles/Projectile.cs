@@ -9,8 +9,15 @@ public partial class Projectile : Area2D
 
     public void OnHitSomething(Node2D target){
         Train hitTrain = target.GetParentOrNull<Train>();
-        if (hitTrain != null && hitTrain != owner){
-            hitTrain.OnAttacked(this,trainSpdMult);
+        if (hitTrain != null){
+            if (hitTrain != owner){
+                hitTrain.OnAttacked(this,trainSpdMult);
+                DestroyThis();
+            }
+        }
+        else{
+            owner.Boost();
+            target.QueueFree();
             DestroyThis();
         }
     }

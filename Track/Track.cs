@@ -26,7 +26,7 @@ public partial class Track : Path2D
     }
 
     public void AddOutboundTrack(Track track){
-        GD.Print(this.Name + " Add Connection");
+        //GD.Print(this.Name + " Add Connection");
         outboundTracks.Add(track);
         outboundTracks.Sort((x,y)=>(int)(x.entryData.distance - y.entryData.distance));
     }

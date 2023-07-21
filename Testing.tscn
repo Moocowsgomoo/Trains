@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://lu41kh8ew3kp"]
+[gd_scene load_steps=26 format=3 uid="uid://lu41kh8ew3kp"]
 
 [ext_resource type="Script" path="res://Track/Track.cs" id="1_6biqv"]
 [ext_resource type="Script" path="res://SwitchData.cs" id="2_dij0n"]
@@ -7,7 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://5lb0t482wq50" path="res://Trains/Train.tscn" id="5_qyn6a"]
 [ext_resource type="PackedScene" uid="uid://dt30uhagjuvx2" path="res://Trains/EnemyTrain.tscn" id="6_5rgaw"]
 [ext_resource type="Script" path="res://FollowObject.cs" id="6_hro7i"]
+[ext_resource type="Script" path="res://Trains/Cannons/Cannon.cs" id="6_iwbo0"]
+[ext_resource type="PackedScene" uid="uid://cjcxa1f5rvwu7" path="res://Projectiles/Projectile.tscn" id="6_ywxqh"]
 [ext_resource type="Script" path="res://Trains/InputControllers/BasicAIInputController.cs" id="8_oysgh"]
+[ext_resource type="Script" path="res://Targets/TargetHolder.cs" id="8_u6cwp"]
+[ext_resource type="PackedScene" uid="uid://bvm72leplh7wi" path="res://Targets/TargetBalloon.tscn" id="9_ekc8f"]
 
 [sub_resource type="Curve2D" id="Curve2D_okxyl"]
 _data = {
@@ -27,17 +31,57 @@ track = NodePath(".")
 distance = 1.0
 direction = 3
 
-[sub_resource type="Resource" id="Resource_f4cng"]
+[sub_resource type="Resource" id="Resource_pc545"]
+resource_local_to_scene = true
+script = ExtResource("6_iwbo0")
+projectile = ExtResource("6_ywxqh")
+maxStoredShots = 1
+rechargeTime = 3.0
+shotCooldownTime = 0.5
+shotSpeed = 200.0
+trainSpdMult = 0.33
+
+[sub_resource type="Resource" id="Resource_nq888"]
 resource_local_to_scene = true
 script = ExtResource("8_oysgh")
 
-[sub_resource type="Resource" id="Resource_ghkq6"]
+[sub_resource type="Resource" id="Resource_ehcce"]
+resource_local_to_scene = true
+script = ExtResource("6_iwbo0")
+projectile = ExtResource("6_ywxqh")
+maxStoredShots = 1
+rechargeTime = 3.0
+shotCooldownTime = 0.5
+shotSpeed = 200.0
+trainSpdMult = 0.33
+
+[sub_resource type="Resource" id="Resource_0mlxe"]
 resource_local_to_scene = true
 script = ExtResource("8_oysgh")
 
-[sub_resource type="Resource" id="Resource_jr4qs"]
+[sub_resource type="Resource" id="Resource_cqjki"]
+resource_local_to_scene = true
+script = ExtResource("6_iwbo0")
+projectile = ExtResource("6_ywxqh")
+maxStoredShots = 1
+rechargeTime = 3.0
+shotCooldownTime = 0.5
+shotSpeed = 200.0
+trainSpdMult = 0.33
+
+[sub_resource type="Resource" id="Resource_r0lfg"]
 resource_local_to_scene = true
 script = ExtResource("8_oysgh")
+
+[sub_resource type="Resource" id="Resource_tf8yi"]
+resource_local_to_scene = true
+script = ExtResource("6_iwbo0")
+projectile = ExtResource("6_ywxqh")
+maxStoredShots = 1
+rechargeTime = 3.0
+shotCooldownTime = 0.5
+shotSpeed = 200.0
+trainSpdMult = 0.33
 
 [sub_resource type="Curve2D" id="Curve2D_63une"]
 _data = {
@@ -76,24 +120,28 @@ script = ExtResource("4_av70w")
 
 [node name="Train" parent="Track/MainTrack" instance=ExtResource("5_qyn6a")]
 rotation = 1.82997
+cannon = SubResource("Resource_pc545")
 
 [node name="EnemyTrain" parent="Track/MainTrack" instance=ExtResource("6_5rgaw")]
 position = Vector2(-3.37265, 149.681)
 rotation = 1.74334
 progress = 86.3474
-controller = SubResource("Resource_f4cng")
+controller = SubResource("Resource_nq888")
+cannon = SubResource("Resource_ehcce")
 
 [node name="EnemyTrain2" parent="Track/MainTrack" instance=ExtResource("6_5rgaw")]
 position = Vector2(40.0254, 220.644)
 rotation = 0.00203225
 progress = 185.167
-controller = SubResource("Resource_ghkq6")
+controller = SubResource("Resource_0mlxe")
+cannon = SubResource("Resource_cqjki")
 
 [node name="EnemyTrain3" parent="Track/MainTrack" instance=ExtResource("6_5rgaw")]
 position = Vector2(123.498, 199.972)
 rotation = -0.256592
 progress = 271.652
-controller = SubResource("Resource_jr4qs")
+controller = SubResource("Resource_r0lfg")
+cannon = SubResource("Resource_tf8yi")
 
 [node name="Shortcut1" type="Path2D" parent="Track"]
 position = Vector2(104, 243)
@@ -109,6 +157,19 @@ script = ExtResource("4_av70w")
 
 [node name="ProjectileHolder" type="Node2D" parent="."]
 
+[node name="TargetHolder" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 150.0
+offset_right = 800.0
+offset_bottom = 450.0
+script = ExtResource("8_u6cwp")
+boostTarget = ExtResource("9_ekc8f")
+
+[node name="Timer" type="Timer" parent="TargetHolder"]
+wait_time = 3.0
+autostart = true
+
 [node name="Camera" type="Node2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(227, 107)
 script = ExtResource("6_hro7i")
@@ -119,3 +180,5 @@ position = Vector2(0, -50)
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
+
+[connection signal="timeout" from="TargetHolder/Timer" to="TargetHolder" method="OnTimerTimeout"]

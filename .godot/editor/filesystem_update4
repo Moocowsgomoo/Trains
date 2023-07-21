@@ -13,3 +13,6 @@ res://Trains/Train.cs
 res://Trains/Cannons/BasicCannon.tres
 res://Projectiles/Projectile.tscn
 res://Projectiles/Projectile.cs
+res://TargetHolder.cs
+res://Targets/TargetBalloon.tscn
+res://Targets/TargetHolder.cs

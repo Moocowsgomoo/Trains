@@ -10,6 +10,7 @@ public partial class Train : PathFollow2D
     [Export] float maxSpeed = 50f;
     [Export] float maxReverseSpeed = -30f;
     [Export] float acceleration = 20f;
+    [Export] float boostSpeedGain = 60f;
     [Export] Cannon cannon;
 
     Track track{get{return GetParent<Track>();}}
@@ -39,11 +40,11 @@ public partial class Train : PathFollow2D
         float dt = (float)delta;
         if (controller){
             float speedIncrease = controller.GetAccelerationInput() * acceleration * dt;
-            speedIncrease = Mathf.Clamp(speedIncrease,maxReverseSpeed-speed,maxSpeed-speed);
+            speedIncrease = Mathf.Clamp(speedIncrease,Mathf.Min(0,maxReverseSpeed-speed),Mathf.Max(0,maxSpeed-speed));
             speed += speedIncrease;
         }
         // slowly reset to clamped speed.
-        speed = Mathf.Lerp(speed,Mathf.Clamp(speed,maxReverseSpeed,maxSpeed),0.1f);
+        speed = Mathf.Lerp(speed,Mathf.Clamp(speed,maxReverseSpeed,maxSpeed),0.02f);
         Move(speed*dt);
     }
 
@@ -63,6 +64,10 @@ public partial class Train : PathFollow2D
             Reparent(dest,false);
             Progress = dist;
         }
+    }
+
+    public void Boost(float mult=1f){
+        AddSpeed(boostSpeedGain*mult);
     }
 
     public void AddSpeed(float amt){
