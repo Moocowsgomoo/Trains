@@ -1,0 +1,121 @@
+[gd_scene load_steps=18 format=3 uid="uid://lu41kh8ew3kp"]
+
+[ext_resource type="Script" path="res://Track/Track.cs" id="1_6biqv"]
+[ext_resource type="Script" path="res://SwitchData.cs" id="2_dij0n"]
+[ext_resource type="Texture2D" uid="uid://cebuwa8t40kgt" path="res://Track/Track.png" id="3_lm75x"]
+[ext_resource type="Script" path="res://Track/DrawCurve.cs" id="4_av70w"]
+[ext_resource type="PackedScene" uid="uid://5lb0t482wq50" path="res://Trains/Train.tscn" id="5_qyn6a"]
+[ext_resource type="PackedScene" uid="uid://dt30uhagjuvx2" path="res://Trains/EnemyTrain.tscn" id="6_5rgaw"]
+[ext_resource type="Script" path="res://FollowObject.cs" id="6_hro7i"]
+[ext_resource type="Script" path="res://Trains/InputControllers/BasicAIInputController.cs" id="8_oysgh"]
+
+[sub_resource type="Curve2D" id="Curve2D_okxyl"]
+_data = {
+"points": PackedVector2Array(1.76471, -6.65593, -1.76471, 6.65593, 24, 68, -174.875, 63.6226, 174.875, -63.6226, 98, 208, -131.759, 58.2711, 131.759, -58.2711, 401, 252, 93.3395, 97.0902, -93.3395, -97.0902, 434, 10, 32.4079, -34.4768, -32.4079, 34.4768, 250, -46, 40.7598, -27.9817, -40.7598, 27.9817, 177, 33, 25.9201, -59.9952, -25.9201, 59.9952, 24, 68)
+}
+point_count = 7
+
+[sub_resource type="Resource" id="Resource_ked8j"]
+script = ExtResource("2_dij0n")
+track = NodePath(".")
+distance = 1500.0
+direction = 3
+
+[sub_resource type="Resource" id="Resource_vog2j"]
+script = ExtResource("2_dij0n")
+track = NodePath(".")
+distance = 1.0
+direction = 3
+
+[sub_resource type="Resource" id="Resource_f4cng"]
+resource_local_to_scene = true
+script = ExtResource("8_oysgh")
+
+[sub_resource type="Resource" id="Resource_ghkq6"]
+resource_local_to_scene = true
+script = ExtResource("8_oysgh")
+
+[sub_resource type="Resource" id="Resource_jr4qs"]
+resource_local_to_scene = true
+script = ExtResource("8_oysgh")
+
+[sub_resource type="Curve2D" id="Curve2D_63une"]
+_data = {
+"points": PackedVector2Array(-9.83406, -43.6306, 9.83406, 43.6306, -107, -51, -97.2176, 3.51837, 97.2176, -3.51837, 34, 49, -86.267, 1.82927, 86.267, -1.82927, 248, 22)
+}
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_1hwhj"]
+script = ExtResource("2_dij0n")
+track = NodePath("../MainTrack")
+distance = 128.0
+direction = 2
+
+[sub_resource type="Resource" id="Resource_qn7va"]
+script = ExtResource("2_dij0n")
+track = NodePath("../MainTrack")
+distance = 520.0
+direction = 2
+
+[node name="RaceScene" type="Node2D"]
+
+[node name="Track" type="Node2D" parent="."]
+position = Vector2(227, 107)
+metadata/_edit_group_ = true
+
+[node name="MainTrack" type="Path2D" parent="Track"]
+curve = SubResource("Curve2D_okxyl")
+script = ExtResource("1_6biqv")
+entryData = SubResource("Resource_ked8j")
+exitData = SubResource("Resource_vog2j")
+
+[node name="Image" type="Line2D" parent="Track/MainTrack"]
+texture = ExtResource("3_lm75x")
+texture_mode = 1
+script = ExtResource("4_av70w")
+
+[node name="Train" parent="Track/MainTrack" instance=ExtResource("5_qyn6a")]
+rotation = 1.82997
+
+[node name="EnemyTrain" parent="Track/MainTrack" instance=ExtResource("6_5rgaw")]
+position = Vector2(-3.37265, 149.681)
+rotation = 1.74334
+progress = 86.3474
+controller = SubResource("Resource_f4cng")
+
+[node name="EnemyTrain2" parent="Track/MainTrack" instance=ExtResource("6_5rgaw")]
+position = Vector2(40.0254, 220.644)
+rotation = 0.00203225
+progress = 185.167
+controller = SubResource("Resource_ghkq6")
+
+[node name="EnemyTrain3" parent="Track/MainTrack" instance=ExtResource("6_5rgaw")]
+position = Vector2(123.498, 199.972)
+rotation = -0.256592
+progress = 271.652
+controller = SubResource("Resource_jr4qs")
+
+[node name="Shortcut1" type="Path2D" parent="Track"]
+position = Vector2(104, 243)
+curve = SubResource("Curve2D_63une")
+script = ExtResource("1_6biqv")
+entryData = SubResource("Resource_1hwhj")
+exitData = SubResource("Resource_qn7va")
+
+[node name="Image" type="Line2D" parent="Track/Shortcut1"]
+texture = ExtResource("3_lm75x")
+texture_mode = 1
+script = ExtResource("4_av70w")
+
+[node name="ProjectileHolder" type="Node2D" parent="."]
+
+[node name="Camera" type="Node2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(227, 107)
+script = ExtResource("6_hro7i")
+target = NodePath("../Track/MainTrack/Train")
+
+[node name="Camera2D" type="Camera2D" parent="Camera"]
+position = Vector2(0, -50)
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true

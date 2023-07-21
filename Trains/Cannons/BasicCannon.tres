@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Cannon" load_steps=3 format=3 uid="uid://b4y3vxqlnq15x"]
+
+[ext_resource type="Script" path="res://Trains/Cannons/Cannon.cs" id="1_lup07"]
+[ext_resource type="PackedScene" uid="uid://cjcxa1f5rvwu7" path="res://Projectiles/Projectile.tscn" id="1_mbfyq"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_lup07")
+projectile = ExtResource("1_mbfyq")
+maxStoredShots = 1
+rechargeTime = 3.0
+shotCooldownTime = 0.5
+shotSpeed = 200.0
+trainSpdMult = 0.33

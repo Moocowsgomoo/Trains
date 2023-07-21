@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "nrGzGYgtoQxhRsXhNCAy1BJNIiNxck6JkXSpS5sBZ2tM8PTAIQxmHU2FyKVB5FW+TEimnSSK2qnFYkAw/0mI4g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jaych\\Documents\\Godot\\Trains\\Trains.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jaych\\.nuget\\packages\\godot.sourcegenerators\\4.1.1\\godot.sourcegenerators.4.1.1.nupkg.sha512",
+    "C:\\Users\\jaych\\.nuget\\packages\\godotsharp\\4.1.1\\godotsharp.4.1.1.nupkg.sha512",
+    "C:\\Users\\jaych\\.nuget\\packages\\godotsharpeditor\\4.1.1\\godotsharpeditor.4.1.1.nupkg.sha512"
+  ],
+  "logs": []
+}

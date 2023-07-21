@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://5lb0t482wq50"]
+
+[ext_resource type="Script" path="res://Trains/Train.cs" id="1_0s5kq"]
+[ext_resource type="Script" path="res://Trains/InputControllers/PlayerInputController.cs" id="2_s8m3p"]
+[ext_resource type="Resource" uid="uid://b4y3vxqlnq15x" path="res://Trains/Cannons/BasicCannon.tres" id="3_igp1h"]
+[ext_resource type="Texture2D" uid="uid://bklsn0hhgwxbu" path="res://Trains/Train.png" id="3_ub45a"]
+
+[sub_resource type="Resource" id="Resource_q2myd"]
+script = ExtResource("2_s8m3p")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nw5qg"]
+size = Vector2(16, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c82v4"]
+size = Vector2(8, 20)
+
+[node name="Train" type="PathFollow2D"]
+z_index = 5
+position = Vector2(24, 68)
+loop = false
+script = ExtResource("1_0s5kq")
+controller = SubResource("Resource_q2myd")
+cannon = ExtResource("3_igp1h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_ub45a")
+
+[node name="Hitbox" type="CharacterBody2D" parent="."]
+rotation = 1.5708
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-1.52588e-05, 2)
+shape = SubResource("RectangleShape2D_nw5qg")
+
+[node name="RamHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RamHitbox"]
+position = Vector2(13, 0)
+shape = SubResource("RectangleShape2D_c82v4")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[connection signal="body_entered" from="RamHitbox" to="." method="OnRamCollide"]

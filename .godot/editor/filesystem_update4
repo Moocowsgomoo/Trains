@@ -1,0 +1,15 @@
+res://Testing.tscn
+res://Trains/EnemyTrain.tscn
+res://Trains/Train.tscn
+res://FollowObject.cs
+res://SwitchData.cs
+res://Track/DrawCurve.cs
+res://Track/Track.cs
+res://Trains/Cannons/Cannon.cs
+res://Trains/InputControllers/BasicAIInputController.cs
+res://Trains/InputControllers/InputController.cs
+res://Trains/InputControllers/PlayerInputController.cs
+res://Trains/Train.cs
+res://Trains/Cannons/BasicCannon.tres
+res://Projectiles/Projectile.tscn
+res://Projectiles/Projectile.cs

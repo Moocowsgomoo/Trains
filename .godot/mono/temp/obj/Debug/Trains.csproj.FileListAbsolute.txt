@@ -1,0 +1,17 @@
+C:\Users\jaych\Documents\Godot\Trains\.godot\mono\temp\bin\Debug\Trains.deps.json
+C:\Users\jaych\Documents\Godot\Trains\.godot\mono\temp\bin\Debug\Trains.runtimeconfig.json
+C:\Users\jaych\Documents\Godot\Trains\.godot\mono\temp\bin\Debug\Trains.dll
+C:\Users\jaych\Documents\Godot\Trains\.godot\mono\temp\bin\Debug\Trains.pdb
+C:\Users\jaych\Documents\Godot\Trains\.godot\mono\temp\bin\Debug\GodotSharp.dll
+C:\Users\jaych\Documents\Godot\Trains\.godot\mono\temp\bin\Debug\GodotSharpEditor.dll
+C:\Users\jaych\Documents\Godot\Trains\.godot\mono\temp\obj\Debug\Trains.csproj.AssemblyReference.cache
+C:\Users\jaych\Documents\Godot\Trains\.godot\mono\temp\obj\Debug\Trains.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jaych\Documents\Godot\Trains\.godot\mono\temp\obj\Debug\Trains.AssemblyInfoInputs.cache
+C:\Users\jaych\Documents\Godot\Trains\.godot\mono\temp\obj\Debug\Trains.AssemblyInfo.cs
+C:\Users\jaych\Documents\Godot\Trains\.godot\mono\temp\obj\Debug\Trains.csproj.CoreCompileInputs.cache
+C:\Users\jaych\Documents\Godot\Trains\.godot\mono\temp\obj\Debug\Trains.csproj.CopyComplete
+C:\Users\jaych\Documents\Godot\Trains\.godot\mono\temp\obj\Debug\Trains.dll
+C:\Users\jaych\Documents\Godot\Trains\.godot\mono\temp\obj\Debug\refint\Trains.dll
+C:\Users\jaych\Documents\Godot\Trains\.godot\mono\temp\obj\Debug\Trains.pdb
+C:\Users\jaych\Documents\Godot\Trains\.godot\mono\temp\obj\Debug\Trains.genruntimeconfig.cache
+C:\Users\jaych\Documents\Godot\Trains\.godot\mono\temp\obj\Debug\ref\Trains.dll
