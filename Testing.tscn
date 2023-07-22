@@ -31,7 +31,7 @@ track = NodePath(".")
 distance = 1.0
 direction = 3
 
-[sub_resource type="Resource" id="Resource_pc545"]
+[sub_resource type="Resource" id="Resource_hgw2l"]
 resource_local_to_scene = true
 script = ExtResource("6_iwbo0")
 projectile = ExtResource("6_ywxqh")
@@ -41,11 +41,11 @@ shotCooldownTime = 0.5
 shotSpeed = 200.0
 trainSpdMult = 0.33
 
-[sub_resource type="Resource" id="Resource_nq888"]
+[sub_resource type="Resource" id="Resource_y0aod"]
 resource_local_to_scene = true
 script = ExtResource("8_oysgh")
 
-[sub_resource type="Resource" id="Resource_ehcce"]
+[sub_resource type="Resource" id="Resource_7w00g"]
 resource_local_to_scene = true
 script = ExtResource("6_iwbo0")
 projectile = ExtResource("6_ywxqh")
@@ -55,11 +55,11 @@ shotCooldownTime = 0.5
 shotSpeed = 200.0
 trainSpdMult = 0.33
 
-[sub_resource type="Resource" id="Resource_0mlxe"]
+[sub_resource type="Resource" id="Resource_8l6t3"]
 resource_local_to_scene = true
 script = ExtResource("8_oysgh")
 
-[sub_resource type="Resource" id="Resource_cqjki"]
+[sub_resource type="Resource" id="Resource_1x0un"]
 resource_local_to_scene = true
 script = ExtResource("6_iwbo0")
 projectile = ExtResource("6_ywxqh")
@@ -69,11 +69,11 @@ shotCooldownTime = 0.5
 shotSpeed = 200.0
 trainSpdMult = 0.33
 
-[sub_resource type="Resource" id="Resource_r0lfg"]
+[sub_resource type="Resource" id="Resource_ygxbo"]
 resource_local_to_scene = true
 script = ExtResource("8_oysgh")
 
-[sub_resource type="Resource" id="Resource_tf8yi"]
+[sub_resource type="Resource" id="Resource_gdpub"]
 resource_local_to_scene = true
 script = ExtResource("6_iwbo0")
 projectile = ExtResource("6_ywxqh")
@@ -120,28 +120,28 @@ script = ExtResource("4_av70w")
 
 [node name="Train" parent="Track/MainTrack" instance=ExtResource("5_qyn6a")]
 rotation = 1.82997
-cannon = SubResource("Resource_pc545")
+cannon = SubResource("Resource_hgw2l")
 
 [node name="EnemyTrain" parent="Track/MainTrack" instance=ExtResource("6_5rgaw")]
 position = Vector2(-3.37265, 149.681)
 rotation = 1.74334
 progress = 86.3474
-controller = SubResource("Resource_nq888")
-cannon = SubResource("Resource_ehcce")
+controller = SubResource("Resource_y0aod")
+cannon = SubResource("Resource_7w00g")
 
 [node name="EnemyTrain2" parent="Track/MainTrack" instance=ExtResource("6_5rgaw")]
 position = Vector2(40.0254, 220.644)
 rotation = 0.00203225
 progress = 185.167
-controller = SubResource("Resource_0mlxe")
-cannon = SubResource("Resource_cqjki")
+controller = SubResource("Resource_8l6t3")
+cannon = SubResource("Resource_1x0un")
 
 [node name="EnemyTrain3" parent="Track/MainTrack" instance=ExtResource("6_5rgaw")]
 position = Vector2(123.498, 199.972)
 rotation = -0.256592
 progress = 271.652
-controller = SubResource("Resource_r0lfg")
-cannon = SubResource("Resource_tf8yi")
+controller = SubResource("Resource_ygxbo")
+cannon = SubResource("Resource_gdpub")
 
 [node name="Shortcut1" type="Path2D" parent="Track"]
 position = Vector2(104, 243)

@@ -1,9 +1,11 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Train : PathFollow2D
 {
     [Export] InputController controller;
+    public List<Node2D> visibleTargets=new();
     float speed;
     int hp;
     [Export] int maxHp=2;
@@ -108,5 +110,13 @@ public partial class Train : PathFollow2D
     public void OnAttacked(Node2D attacker, float hitSpdMult, int damage = 0){
         MultiplySpeed(hitSpdMult);
         if (damage > 0) TakeDamage(damage);
+    }
+
+    public void AddVisibleTarget(Node2D target){
+        if (target.GetParent() != this) visibleTargets.Add(target);
+    }
+
+    public void RemoveVisibleTarget(Node2D target){
+        visibleTargets.Remove(target);
     }
 }

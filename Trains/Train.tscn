@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://5lb0t482wq50"]
+[gd_scene load_steps=9 format=3 uid="uid://5lb0t482wq50"]
 
 [ext_resource type="Script" path="res://Trains/Train.cs" id="1_0s5kq"]
 [ext_resource type="Script" path="res://Trains/InputControllers/PlayerInputController.cs" id="2_s8m3p"]
@@ -13,6 +13,9 @@ size = Vector2(16, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c82v4"]
 size = Vector2(8, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8rpaq"]
+radius = 223.573
 
 [node name="Train" type="PathFollow2D"]
 z_index = 5
@@ -44,4 +47,12 @@ position = Vector2(13, 0)
 shape = SubResource("RectangleShape2D_c82v4")
 debug_color = Color(1, 0, 0, 0.419608)
 
+[node name="VisibleTargetDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisibleTargetDetector"]
+shape = SubResource("CircleShape2D_8rpaq")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
 [connection signal="body_entered" from="RamHitbox" to="." method="OnRamCollide"]
+[connection signal="body_entered" from="VisibleTargetDetector" to="." method="AddVisibleTarget"]
+[connection signal="body_exited" from="VisibleTargetDetector" to="." method="RemoveVisibleTarget"]
