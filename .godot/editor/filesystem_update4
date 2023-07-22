@@ -14,3 +14,5 @@ res://Trains/InputControllers/BasicAIInputController.cs
 res://Trains/InputControllers/InputController.cs
 res://Trains/InputControllers/PlayerInputController.cs
 res://Trains/Train.cs
+res://GameManager.cs
+res://Trains/EnemyTrain.tscn

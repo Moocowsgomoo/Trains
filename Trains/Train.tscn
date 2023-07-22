@@ -23,6 +23,7 @@ position = Vector2(24, 68)
 loop = false
 script = ExtResource("1_0s5kq")
 controller = SubResource("Resource_q2myd")
+isPlayer = true
 cannon = ExtResource("3_igp1h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

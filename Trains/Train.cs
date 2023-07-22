@@ -4,10 +4,12 @@ using System.Collections.Generic;
 
 public partial class Train : PathFollow2D
 {
+    public int lapsComplete{get;private set;}=0;
     [Export] InputController controller;
     public List<Node2D> visibleTargets=new();
     float speed;
     int hp;
+    [Export] bool isPlayer=false;
     [Export] int maxHp=2;
     [Export] float maxSpeed = 50f;
     [Export] float maxReverseSpeed = -30f;
@@ -63,9 +65,23 @@ public partial class Train : PathFollow2D
         else if (ProgressRatio >= 1f){
             Track dest = track.GetDestinationTrack();
             float dist = track.exitData.distance;
+            if (track.exitData.isFinishLine) FinishLap();
             Reparent(dest,false);
             Progress = dist;
         }
+    }
+
+    void FinishLap(){
+        lapsComplete++;
+        if (isPlayer){
+            if (lapsComplete >= 3) GameOver();
+            else GameManager.instance.UpdateLapCounter(lapsComplete+1);
+        }
+    }
+
+    void GameOver(){
+        GD.Print("GAME OVER!");
+        // TODO
     }
 
     public void Boost(float mult=1f){

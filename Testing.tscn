@@ -1,9 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://lu41kh8ew3kp"]
+[gd_scene load_steps=29 format=3 uid="uid://lu41kh8ew3kp"]
 
 [ext_resource type="Script" path="res://Track/Track.cs" id="1_6biqv"]
+[ext_resource type="Script" path="res://GameManager.cs" id="1_t6yb8"]
 [ext_resource type="Script" path="res://SwitchData.cs" id="2_dij0n"]
 [ext_resource type="Texture2D" uid="uid://cebuwa8t40kgt" path="res://Track/Track.png" id="3_lm75x"]
 [ext_resource type="Script" path="res://Track/DrawCurve.cs" id="4_av70w"]
+[ext_resource type="Texture2D" uid="uid://72gf582c2d4f" path="res://FinishLine.png" id="4_me0gi"]
 [ext_resource type="PackedScene" uid="uid://5lb0t482wq50" path="res://Trains/Train.tscn" id="5_qyn6a"]
 [ext_resource type="PackedScene" uid="uid://dt30uhagjuvx2" path="res://Trains/EnemyTrain.tscn" id="6_5rgaw"]
 [ext_resource type="Script" path="res://FollowObject.cs" id="6_hro7i"]
@@ -15,7 +17,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_okxyl"]
 _data = {
-"points": PackedVector2Array(1.76471, -6.65593, -1.76471, 6.65593, 24, 68, -174.875, 63.6226, 174.875, -63.6226, 98, 208, -131.759, 58.2711, 131.759, -58.2711, 401, 252, 93.3395, 97.0902, -93.3395, -97.0902, 434, 10, 32.4079, -34.4768, -32.4079, 34.4768, 250, -46, 40.7598, -27.9817, -40.7598, 27.9817, 177, 33, 25.9201, -59.9952, -25.9201, 59.9952, 24, 68)
+"points": PackedVector2Array(4.29025, -9.46209, -4.29025, 9.46209, 24, 68, -174.875, 63.6226, 174.875, -63.6226, 98, 208, -131.759, 58.2711, 131.759, -58.2711, 401, 252, 93.3395, 97.0902, -93.3395, -97.0902, 434, 10, 32.4079, -34.4768, -32.4079, 34.4768, 250, -46, 40.7598, -27.9817, -40.7598, 27.9817, 177, 33, 25.9201, -59.9952, -25.9201, 59.9952, 24, 68)
 }
 point_count = 7
 
@@ -24,14 +26,16 @@ script = ExtResource("2_dij0n")
 track = NodePath(".")
 distance = 1500.0
 direction = 3
+isFinishLine = false
 
 [sub_resource type="Resource" id="Resource_vog2j"]
 script = ExtResource("2_dij0n")
 track = NodePath(".")
 distance = 1.0
 direction = 3
+isFinishLine = true
 
-[sub_resource type="Resource" id="Resource_hgw2l"]
+[sub_resource type="Resource" id="Resource_5kote"]
 resource_local_to_scene = true
 script = ExtResource("6_iwbo0")
 projectile = ExtResource("6_ywxqh")
@@ -41,11 +45,11 @@ shotCooldownTime = 0.5
 shotSpeed = 200.0
 trainSpdMult = 0.33
 
-[sub_resource type="Resource" id="Resource_y0aod"]
+[sub_resource type="Resource" id="Resource_8vtxb"]
 resource_local_to_scene = true
 script = ExtResource("8_oysgh")
 
-[sub_resource type="Resource" id="Resource_7w00g"]
+[sub_resource type="Resource" id="Resource_gk6jn"]
 resource_local_to_scene = true
 script = ExtResource("6_iwbo0")
 projectile = ExtResource("6_ywxqh")
@@ -55,11 +59,11 @@ shotCooldownTime = 0.5
 shotSpeed = 200.0
 trainSpdMult = 0.33
 
-[sub_resource type="Resource" id="Resource_8l6t3"]
+[sub_resource type="Resource" id="Resource_8yo5w"]
 resource_local_to_scene = true
 script = ExtResource("8_oysgh")
 
-[sub_resource type="Resource" id="Resource_1x0un"]
+[sub_resource type="Resource" id="Resource_l4s27"]
 resource_local_to_scene = true
 script = ExtResource("6_iwbo0")
 projectile = ExtResource("6_ywxqh")
@@ -69,11 +73,11 @@ shotCooldownTime = 0.5
 shotSpeed = 200.0
 trainSpdMult = 0.33
 
-[sub_resource type="Resource" id="Resource_ygxbo"]
+[sub_resource type="Resource" id="Resource_se1be"]
 resource_local_to_scene = true
 script = ExtResource("8_oysgh")
 
-[sub_resource type="Resource" id="Resource_gdpub"]
+[sub_resource type="Resource" id="Resource_fj3ml"]
 resource_local_to_scene = true
 script = ExtResource("6_iwbo0")
 projectile = ExtResource("6_ywxqh")
@@ -94,18 +98,24 @@ script = ExtResource("2_dij0n")
 track = NodePath("../MainTrack")
 distance = 128.0
 direction = 2
+isFinishLine = false
 
 [sub_resource type="Resource" id="Resource_qn7va"]
 script = ExtResource("2_dij0n")
 track = NodePath("../MainTrack")
 distance = 520.0
 direction = 2
+isFinishLine = false
 
-[node name="RaceScene" type="Node2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_fhswm"]
+font_size = 32
+
+[node name="RaceScene" type="Node2D" node_paths=PackedStringArray("lapCounter")]
+script = ExtResource("1_t6yb8")
+lapCounter = NodePath("UI/Screen/LapCounter")
 
 [node name="Track" type="Node2D" parent="."]
 position = Vector2(227, 107)
-metadata/_edit_group_ = true
 
 [node name="MainTrack" type="Path2D" parent="Track"]
 curve = SubResource("Curve2D_okxyl")
@@ -113,35 +123,46 @@ script = ExtResource("1_6biqv")
 entryData = SubResource("Resource_ked8j")
 exitData = SubResource("Resource_vog2j")
 
+[node name="FinishLine" type="Sprite2D" parent="Track/MainTrack"]
+z_index = 2
+position = Vector2(24, 68)
+rotation = 0.432027
+scale = Vector2(1, 1)
+texture = ExtResource("4_me0gi")
+
 [node name="Image" type="Line2D" parent="Track/MainTrack"]
 texture = ExtResource("3_lm75x")
 texture_mode = 1
 script = ExtResource("4_av70w")
 
 [node name="Train" parent="Track/MainTrack" instance=ExtResource("5_qyn6a")]
-rotation = 1.82997
-cannon = SubResource("Resource_hgw2l")
+rotation = 1.99649
+cannon = SubResource("Resource_5kote")
+metadata/_edit_lock_ = true
 
 [node name="EnemyTrain" parent="Track/MainTrack" instance=ExtResource("6_5rgaw")]
-position = Vector2(-3.37265, 149.681)
-rotation = 1.74334
+position = Vector2(-4.15861, 149.374)
+rotation = 1.74775
 progress = 86.3474
-controller = SubResource("Resource_y0aod")
-cannon = SubResource("Resource_7w00g")
+controller = SubResource("Resource_8vtxb")
+cannon = SubResource("Resource_gk6jn")
+metadata/_edit_lock_ = true
 
 [node name="EnemyTrain2" parent="Track/MainTrack" instance=ExtResource("6_5rgaw")]
-position = Vector2(40.0254, 220.644)
-rotation = 0.00203225
+position = Vector2(38.7327, 220.769)
+rotation = 0.0101226
 progress = 185.167
-controller = SubResource("Resource_8l6t3")
-cannon = SubResource("Resource_1x0un")
+controller = SubResource("Resource_8yo5w")
+cannon = SubResource("Resource_l4s27")
+metadata/_edit_lock_ = true
 
 [node name="EnemyTrain3" parent="Track/MainTrack" instance=ExtResource("6_5rgaw")]
-position = Vector2(123.498, 199.972)
-rotation = -0.256592
+position = Vector2(122.243, 200.305)
+rotation = -0.261743
 progress = 271.652
-controller = SubResource("Resource_ygxbo")
-cannon = SubResource("Resource_gdpub")
+controller = SubResource("Resource_se1be")
+cannon = SubResource("Resource_fj3ml")
+metadata/_edit_lock_ = true
 
 [node name="Shortcut1" type="Path2D" parent="Track"]
 position = Vector2(104, 243)
@@ -165,6 +186,7 @@ offset_right = 800.0
 offset_bottom = 450.0
 script = ExtResource("8_u6cwp")
 boostTarget = ExtResource("9_ekc8f")
+metadata/_edit_lock_ = true
 
 [node name="Timer" type="Timer" parent="TargetHolder"]
 wait_time = 3.0
@@ -180,5 +202,25 @@ position = Vector2(0, -50)
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Screen" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="LapCounter" type="Label" parent="UI/Screen"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 15.0
+offset_right = 101.0
+offset_bottom = 52.0
+text = "Lap 1"
+label_settings = SubResource("LabelSettings_fhswm")
 
 [connection signal="timeout" from="TargetHolder/Timer" to="TargetHolder" method="OnTimerTimeout"]
