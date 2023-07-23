@@ -1,8 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://lu41kh8ew3kp"]
+[gd_scene load_steps=33 format=3 uid="uid://lu41kh8ew3kp"]
 
 [ext_resource type="Script" path="res://Track/Track.cs" id="1_6biqv"]
 [ext_resource type="Script" path="res://GameManager.cs" id="1_t6yb8"]
-[ext_resource type="Script" path="res://SwitchData.cs" id="2_dij0n"]
+[ext_resource type="Script" path="res://Track/SwitchData.cs" id="3_0qj0l"]
 [ext_resource type="Texture2D" uid="uid://cebuwa8t40kgt" path="res://Track/Track.png" id="3_lm75x"]
 [ext_resource type="Script" path="res://Track/DrawCurve.cs" id="4_av70w"]
 [ext_resource type="Texture2D" uid="uid://72gf582c2d4f" path="res://FinishLine.png" id="4_me0gi"]
@@ -22,20 +22,20 @@ _data = {
 point_count = 7
 
 [sub_resource type="Resource" id="Resource_ked8j"]
-script = ExtResource("2_dij0n")
+script = ExtResource("3_0qj0l")
 track = NodePath(".")
 distance = 1500.0
 direction = 3
 isFinishLine = false
 
 [sub_resource type="Resource" id="Resource_vog2j"]
-script = ExtResource("2_dij0n")
+script = ExtResource("3_0qj0l")
 track = NodePath(".")
 distance = 1.0
 direction = 3
 isFinishLine = true
 
-[sub_resource type="Resource" id="Resource_5kote"]
+[sub_resource type="Resource" id="Resource_5gkbj"]
 resource_local_to_scene = true
 script = ExtResource("6_iwbo0")
 projectile = ExtResource("6_ywxqh")
@@ -45,11 +45,11 @@ shotCooldownTime = 0.5
 shotSpeed = 200.0
 trainSpdMult = 0.33
 
-[sub_resource type="Resource" id="Resource_8vtxb"]
+[sub_resource type="Resource" id="Resource_ndu8l"]
 resource_local_to_scene = true
 script = ExtResource("8_oysgh")
 
-[sub_resource type="Resource" id="Resource_gk6jn"]
+[sub_resource type="Resource" id="Resource_7bcn3"]
 resource_local_to_scene = true
 script = ExtResource("6_iwbo0")
 projectile = ExtResource("6_ywxqh")
@@ -59,11 +59,11 @@ shotCooldownTime = 0.5
 shotSpeed = 200.0
 trainSpdMult = 0.33
 
-[sub_resource type="Resource" id="Resource_8yo5w"]
+[sub_resource type="Resource" id="Resource_uysoi"]
 resource_local_to_scene = true
 script = ExtResource("8_oysgh")
 
-[sub_resource type="Resource" id="Resource_l4s27"]
+[sub_resource type="Resource" id="Resource_hp4ed"]
 resource_local_to_scene = true
 script = ExtResource("6_iwbo0")
 projectile = ExtResource("6_ywxqh")
@@ -73,11 +73,11 @@ shotCooldownTime = 0.5
 shotSpeed = 200.0
 trainSpdMult = 0.33
 
-[sub_resource type="Resource" id="Resource_se1be"]
+[sub_resource type="Resource" id="Resource_kc5i7"]
 resource_local_to_scene = true
 script = ExtResource("8_oysgh")
 
-[sub_resource type="Resource" id="Resource_fj3ml"]
+[sub_resource type="Resource" id="Resource_qcte7"]
 resource_local_to_scene = true
 script = ExtResource("6_iwbo0")
 projectile = ExtResource("6_ywxqh")
@@ -94,14 +94,14 @@ _data = {
 point_count = 3
 
 [sub_resource type="Resource" id="Resource_1hwhj"]
-script = ExtResource("2_dij0n")
+script = ExtResource("3_0qj0l")
 track = NodePath("../MainTrack")
 distance = 128.0
 direction = 2
 isFinishLine = false
 
 [sub_resource type="Resource" id="Resource_qn7va"]
-script = ExtResource("2_dij0n")
+script = ExtResource("3_0qj0l")
 track = NodePath("../MainTrack")
 distance = 520.0
 direction = 2
@@ -110,9 +110,101 @@ isFinishLine = false
 [sub_resource type="LabelSettings" id="LabelSettings_fhswm"]
 font_size = 32
 
-[node name="RaceScene" type="Node2D" node_paths=PackedStringArray("lapCounter")]
+[sub_resource type="LabelSettings" id="LabelSettings_1q31c"]
+font_size = 98
+font_color = Color(0.721569, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_445n2"]
+resource_name = "PlayStartCountdown"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["3", "2", "1", "Go!"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9, 1, 1.9, 2, 2.9, 3, 4),
+"transitions": PackedFloat32Array(1, 1000, 1, 1000, 1, 1000, 1, 1000),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1, 1), Vector2(2, 2), Vector2(1, 1), Vector2(2, 2), Vector2(1, 1), Vector2(2, 2), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9, 1, 1.9, 2, 2.9, 3, 4),
+"transitions": PackedFloat32Array(1, 1000, 1, 1000, 1, 1000, 1, 1000),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"StartRace"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_d8esa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4h26i"]
+_data = {
+"PlayStartCountdown": SubResource("Animation_445n2"),
+"RESET": SubResource("Animation_d8esa")
+}
+
+[node name="RaceScene" type="Node2D" node_paths=PackedStringArray("lapCounter", "startCountdown")]
 script = ExtResource("1_t6yb8")
 lapCounter = NodePath("UI/Screen/LapCounter")
+startCountdown = NodePath("UI/Screen/StartCountdown")
 
 [node name="Track" type="Node2D" parent="."]
 position = Vector2(227, 107)
@@ -127,7 +219,6 @@ exitData = SubResource("Resource_vog2j")
 z_index = 2
 position = Vector2(24, 68)
 rotation = 0.432027
-scale = Vector2(1, 1)
 texture = ExtResource("4_me0gi")
 
 [node name="Image" type="Line2D" parent="Track/MainTrack"]
@@ -137,31 +228,34 @@ script = ExtResource("4_av70w")
 
 [node name="Train" parent="Track/MainTrack" instance=ExtResource("5_qyn6a")]
 rotation = 1.99649
-cannon = SubResource("Resource_5kote")
+cannon = SubResource("Resource_5gkbj")
 metadata/_edit_lock_ = true
 
 [node name="EnemyTrain" parent="Track/MainTrack" instance=ExtResource("6_5rgaw")]
 position = Vector2(-4.15861, 149.374)
 rotation = 1.74775
 progress = 86.3474
-controller = SubResource("Resource_8vtxb")
-cannon = SubResource("Resource_gk6jn")
+controller = SubResource("Resource_ndu8l")
+maxReverseSpeed = -30.0
+cannon = SubResource("Resource_7bcn3")
 metadata/_edit_lock_ = true
 
 [node name="EnemyTrain2" parent="Track/MainTrack" instance=ExtResource("6_5rgaw")]
 position = Vector2(38.7327, 220.769)
-rotation = 0.0101226
+rotation = 0.0101225
 progress = 185.167
-controller = SubResource("Resource_8yo5w")
-cannon = SubResource("Resource_l4s27")
+controller = SubResource("Resource_uysoi")
+maxReverseSpeed = -30.0
+cannon = SubResource("Resource_hp4ed")
 metadata/_edit_lock_ = true
 
 [node name="EnemyTrain3" parent="Track/MainTrack" instance=ExtResource("6_5rgaw")]
 position = Vector2(122.243, 200.305)
 rotation = -0.261743
 progress = 271.652
-controller = SubResource("Resource_se1be")
-cannon = SubResource("Resource_fj3ml")
+controller = SubResource("Resource_kc5i7")
+maxReverseSpeed = -30.0
+cannon = SubResource("Resource_qcte7")
 metadata/_edit_lock_ = true
 
 [node name="Shortcut1" type="Path2D" parent="Track"]
@@ -222,5 +316,30 @@ offset_right = 101.0
 offset_bottom = 52.0
 text = "Lap 1"
 label_settings = SubResource("LabelSettings_fhswm")
+
+[node name="StartCountdown" type="Label" parent="UI/Screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -68.5
+offset_right = 79.0
+offset_bottom = 68.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(80, 69)
+text = "Go!"
+label_settings = SubResource("LabelSettings_1q31c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Screen/StartCountdown"]
+libraries = {
+"": SubResource("AnimationLibrary_4h26i")
+}
 
 [connection signal="timeout" from="TargetHolder/Timer" to="TargetHolder" method="OnTimerTimeout"]

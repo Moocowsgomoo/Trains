@@ -9,6 +9,7 @@ public partial class Train : PathFollow2D
     public List<Node2D> visibleTargets=new();
     float speed;
     int hp;
+    float invincibilityTimer=0f;
     [Export] bool isPlayer=false;
     [Export] int maxHp=2;
     [Export] float maxSpeed = 50f;
@@ -16,6 +17,7 @@ public partial class Train : PathFollow2D
     [Export] float acceleration = 20f;
     [Export] float boostSpeedGain = 60f;
     [Export] Cannon cannon;
+    [Export] HPBar hpBar;
 
     Track track{get{return GetParent<Track>();}}
 
@@ -26,20 +28,26 @@ public partial class Train : PathFollow2D
             controller.train = this;
         } 
         hp = maxHp;
+        hpBar.Init(maxHp);
     }
 
     public override void _Process(double delta)
     {
+        if (!GameManager.instance.raceStarted) return;
+
         base._Process(delta);
         float dt = (float)delta;
         if (cannon) cannon.Process(dt);
         if (controller && controller.GetFireInput() && cannon.CanFire()){
             FireCannon();
         }
+        invincibilityTimer -= dt;
     }
 
     public override void _PhysicsProcess(double delta)
     {
+        if (!GameManager.instance.raceStarted) return;
+
         base._PhysicsProcess(delta);
         float dt = (float)delta;
         if (controller){
@@ -53,6 +61,7 @@ public partial class Train : PathFollow2D
     }
 
     void Move(float moveAmt){
+        moveAmt = Math.Max(0f,moveAmt); // game jam - no reverse, since track switching doesn't work in reverse.
         Track nextOutboundTrack = track.GetNextOutboundTrack(Progress);
         Progress += moveAmt;
         if (nextOutboundTrack != null && 
@@ -97,7 +106,11 @@ public partial class Train : PathFollow2D
     }
 
     public void TakeDamage(int dmg=1){
-        hp -= dmg;
+        if (invincibilityTimer <= 0f){
+            hp -= dmg;
+            hpBar.UpdateHP(hp);
+            invincibilityTimer = .5f;
+        } 
         if (hp <= 0) QueueFree();
     }
 

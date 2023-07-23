@@ -1,9 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://5lb0t482wq50"]
+[gd_scene load_steps=15 format=3 uid="uid://5lb0t482wq50"]
 
 [ext_resource type="Script" path="res://Trains/Train.cs" id="1_0s5kq"]
 [ext_resource type="Script" path="res://Trains/InputControllers/PlayerInputController.cs" id="2_s8m3p"]
 [ext_resource type="Resource" uid="uid://b4y3vxqlnq15x" path="res://Trains/Cannons/BasicCannon.tres" id="3_igp1h"]
 [ext_resource type="Texture2D" uid="uid://bklsn0hhgwxbu" path="res://Trains/Train.png" id="3_ub45a"]
+[ext_resource type="Script" path="res://Trains/HPBar.cs" id="6_xw35b"]
+[ext_resource type="Script" path="res://Trains/CancelRotation.cs" id="7_e3pee"]
+[ext_resource type="PackedScene" uid="uid://cyldlw4btu3gq" path="res://ObjectUI/HeartContainer.tscn" id="7_iww0e"]
 
 [sub_resource type="Resource" id="Resource_q2myd"]
 script = ExtResource("2_s8m3p")
@@ -17,14 +20,52 @@ size = Vector2(8, 20)
 [sub_resource type="CircleShape2D" id="CircleShape2D_8rpaq"]
 radius = 223.573
 
-[node name="Train" type="PathFollow2D"]
+[sub_resource type="Animation" id="Animation_wsfne"]
+resource_name = "FadeOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_h005j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ugyg"]
+_data = {
+"FadeOut": SubResource("Animation_wsfne"),
+"RESET": SubResource("Animation_h005j")
+}
+
+[node name="Train" type="PathFollow2D" node_paths=PackedStringArray("hpBar")]
 z_index = 5
 position = Vector2(24, 68)
 loop = false
 script = ExtResource("1_0s5kq")
 controller = SubResource("Resource_q2myd")
 isPlayer = true
+maxReverseSpeed = 0.0
 cannon = ExtResource("3_igp1h")
+hpBar = NodePath("UIHolder/HPBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
@@ -49,10 +90,45 @@ shape = SubResource("RectangleShape2D_c82v4")
 debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="VisibleTargetDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisibleTargetDetector"]
 shape = SubResource("CircleShape2D_8rpaq")
 debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="UIHolder" type="Node2D" parent="."]
+
+[node name="CancelRotation" type="Node2D" parent="UIHolder" node_paths=PackedStringArray("target")]
+position = Vector2(-13, -6)
+script = ExtResource("7_e3pee")
+target = NodePath("..")
+
+[node name="HPBarAnimator" type="AnimationPlayer" parent="UIHolder"]
+root_node = NodePath("../HPBar")
+libraries = {
+"": SubResource("AnimationLibrary_3ugyg")
+}
+
+[node name="HPBar" type="HBoxContainer" parent="UIHolder" node_paths=PackedStringArray("animator")]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -6.0
+offset_right = 13.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(13, 6)
+theme_override_constants/separation = 0
+alignment = 1
+script = ExtResource("6_xw35b")
+heartPrefab = ExtResource("7_iww0e")
+animator = NodePath("../HPBarAnimator")
 
 [connection signal="body_entered" from="RamHitbox" to="." method="OnRamCollide"]
 [connection signal="body_entered" from="VisibleTargetDetector" to="." method="AddVisibleTarget"]

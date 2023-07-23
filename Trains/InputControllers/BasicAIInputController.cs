@@ -9,13 +9,16 @@ public partial class BasicAIInputController : InputController
         return 1f;
     }
     public override SwitchDirection GetTurnInput(){
-        return SwitchDirection.NONE;
+        float n = rng.Randf();
+        if (n <= 0.33f) return SwitchDirection.LEFT;
+        else if (n <= 0.67f) return SwitchDirection.NONE;
+        else return SwitchDirection.RIGHT;
     }
     public override Vector2 GetAimTarget(){
         if (train.visibleTargets.Count == 0) return Vector2.Zero;
         return train.visibleTargets[rng.RandiRange(0,train.visibleTargets.Count-1)].GlobalPosition;
     }
     public override bool GetFireInput(){
-        return rng.Randf() > 0.999f;
+        return rng.Randf() > 0.9995f;
     }
 }

@@ -16,3 +16,6 @@ res://Trains/InputControllers/PlayerInputController.cs
 res://Trains/Train.cs
 res://GameManager.cs
 res://Trains/EnemyTrain.tscn
+res://Trains/CancelRotation.cs
+res://Trains/HPBar.cs
+res://Track/SwitchData.cs
