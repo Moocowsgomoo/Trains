@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://lu41kh8ew3kp"]
+[gd_scene load_steps=47 format=3 uid="uid://lu41kh8ew3kp"]
 
 [ext_resource type="Script" path="res://Track/Track.cs" id="1_6biqv"]
 [ext_resource type="Script" path="res://GameManager.cs" id="1_t6yb8"]
@@ -15,27 +15,27 @@
 [ext_resource type="Script" path="res://Targets/TargetHolder.cs" id="8_u6cwp"]
 [ext_resource type="PackedScene" uid="uid://bvm72leplh7wi" path="res://Targets/TargetBalloon.tscn" id="9_ekc8f"]
 
-[sub_resource type="Curve2D" id="Curve2D_okxyl"]
+[sub_resource type="Curve2D" id="Curve2D_ig2ux"]
 _data = {
-"points": PackedVector2Array(4.29025, -9.46209, -4.29025, 9.46209, 24, 68, -174.875, 63.6226, 174.875, -63.6226, 98, 208, -131.759, 58.2711, 131.759, -58.2711, 401, 252, 93.3395, 97.0902, -93.3395, -97.0902, 434, 10, 32.4079, -34.4768, -32.4079, 34.4768, 250, -46, 40.7598, -27.9817, -40.7598, 27.9817, 177, 33, 25.9201, -59.9952, -25.9201, 59.9952, 24, 68)
+"points": PackedVector2Array(-2.57598, 84.4653, 2.57598, -84.4653, -4, 143, -94.9959, -32.344, 94.9959, 32.344, 192, 66, -82, 25.5, 82, -25.5, 294, -69, 0.5, -68, -0.5, 68, 504, 144, 52.5, -11.5, -52.5, 11.5, 352, 266, 61.2246, -7.85723, -61.2246, 7.85723, 175, 193, -2.48704, 134.411, 2.48704, -134.411, -4, 143)
 }
 point_count = 7
 
 [sub_resource type="Resource" id="Resource_ked8j"]
 script = ExtResource("3_0qj0l")
 track = NodePath(".")
-distance = 1500.0
+distance = 1410.0
 direction = 3
 isFinishLine = false
 
 [sub_resource type="Resource" id="Resource_vog2j"]
 script = ExtResource("3_0qj0l")
 track = NodePath(".")
-distance = 1.0
+distance = 0.0
 direction = 3
 isFinishLine = true
 
-[sub_resource type="Resource" id="Resource_5gkbj"]
+[sub_resource type="Resource" id="Resource_184qh"]
 resource_local_to_scene = true
 script = ExtResource("6_iwbo0")
 projectile = ExtResource("6_ywxqh")
@@ -45,11 +45,11 @@ shotCooldownTime = 0.5
 shotSpeed = 200.0
 trainSpdMult = 0.33
 
-[sub_resource type="Resource" id="Resource_ndu8l"]
+[sub_resource type="Resource" id="Resource_l3a3m"]
 resource_local_to_scene = true
 script = ExtResource("8_oysgh")
 
-[sub_resource type="Resource" id="Resource_7bcn3"]
+[sub_resource type="Resource" id="Resource_1agnl"]
 resource_local_to_scene = true
 script = ExtResource("6_iwbo0")
 projectile = ExtResource("6_ywxqh")
@@ -59,11 +59,11 @@ shotCooldownTime = 0.5
 shotSpeed = 200.0
 trainSpdMult = 0.33
 
-[sub_resource type="Resource" id="Resource_uysoi"]
+[sub_resource type="Resource" id="Resource_wcj4g"]
 resource_local_to_scene = true
 script = ExtResource("8_oysgh")
 
-[sub_resource type="Resource" id="Resource_hp4ed"]
+[sub_resource type="Resource" id="Resource_ujv61"]
 resource_local_to_scene = true
 script = ExtResource("6_iwbo0")
 projectile = ExtResource("6_ywxqh")
@@ -73,11 +73,11 @@ shotCooldownTime = 0.5
 shotSpeed = 200.0
 trainSpdMult = 0.33
 
-[sub_resource type="Resource" id="Resource_kc5i7"]
+[sub_resource type="Resource" id="Resource_iyd5c"]
 resource_local_to_scene = true
 script = ExtResource("8_oysgh")
 
-[sub_resource type="Resource" id="Resource_qcte7"]
+[sub_resource type="Resource" id="Resource_rb7p5"]
 resource_local_to_scene = true
 script = ExtResource("6_iwbo0")
 projectile = ExtResource("6_ywxqh")
@@ -89,26 +89,69 @@ trainSpdMult = 0.33
 
 [sub_resource type="Curve2D" id="Curve2D_63une"]
 _data = {
-"points": PackedVector2Array(-9.83406, -43.6306, 9.83406, 43.6306, -107, -51, -97.2176, 3.51837, 97.2176, -3.51837, 34, 49, -86.267, 1.82927, 86.267, -1.82927, 248, 22)
+"points": PackedVector2Array(-31.4449, 12.2953, 31.4449, -12.2953, -54, -179, -30.6822, 27.1818, 30.6822, -27.1818, 71, -259, -85.627, 10.0649, 85.627, -10.0649, 203, -314)
 }
 point_count = 3
 
-[sub_resource type="Resource" id="Resource_1hwhj"]
+[sub_resource type="Resource" id="Resource_wqm0h"]
 script = ExtResource("3_0qj0l")
 track = NodePath("../MainTrack")
-distance = 128.0
+distance = 101.0
+direction = 1
+isFinishLine = false
+
+[sub_resource type="Resource" id="Resource_lggti"]
+script = ExtResource("3_0qj0l")
+track = NodePath("../MainTrack")
+distance = 460.0
+direction = 1
+isFinishLine = false
+
+[sub_resource type="Curve2D" id="Curve2D_03fm8"]
+_data = {
+"points": PackedVector2Array(-7.34822, 111.419, 7.34822, -111.419, 249, 11, 142.545, -28.3733, -142.545, 28.3733, 374, 104, 34, -35.5, -34, 35.5, 453, 223)
+}
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_ayjyu"]
+script = ExtResource("3_0qj0l")
+track = NodePath("../MainTrack")
+distance = 347.0
 direction = 2
 isFinishLine = false
 
-[sub_resource type="Resource" id="Resource_qn7va"]
+[sub_resource type="Resource" id="Resource_8u633"]
 script = ExtResource("3_0qj0l")
 track = NodePath("../MainTrack")
-distance = 520.0
+distance = 868.0
 direction = 2
 isFinishLine = false
+
+[sub_resource type="Curve2D" id="Curve2D_afrti"]
+_data = {
+"points": PackedVector2Array(109, -12, -109, 12, 346, 267, 55.2348, 6.30615, -55.2348, -6.30615, 170, 276, 35.5, 22.5, -35.5, -22.5, 24, 216)
+}
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_d3thg"]
+script = ExtResource("3_0qj0l")
+track = NodePath("../MainTrack")
+distance = 983.0
+direction = 1
+isFinishLine = false
+
+[sub_resource type="Resource" id="Resource_qnhbm"]
+script = ExtResource("3_0qj0l")
+track = NodePath("../MainTrack")
+distance = 1330.0
+direction = 1
+isFinishLine = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_4a7tb"]
+font_size = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_fhswm"]
-font_size = 32
+font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_1q31c"]
 font_size = 98
@@ -201,71 +244,184 @@ _data = {
 "RESET": SubResource("Animation_d8esa")
 }
 
-[node name="RaceScene" type="Node2D" node_paths=PackedStringArray("lapCounter", "startCountdown")]
+[sub_resource type="LabelSettings" id="LabelSettings_6t1fd"]
+font_size = 98
+
+[sub_resource type="LabelSettings" id="LabelSettings_kwct4"]
+font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1rbkp"]
+bg_color = Color(0.137255, 0.137255, 0.443137, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1g11k"]
+bg_color = Color(0.34902, 0.137255, 0.101961, 1)
+
+[sub_resource type="Animation" id="Animation_jslub"]
+resource_name = "GameOverScreenAppear"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Content:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 50), Vector2(0, -10), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_w05v6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Content:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kbmt4"]
+_data = {
+"GameOverScreenAppear": SubResource("Animation_jslub"),
+"RESET": SubResource("Animation_w05v6")
+}
+
+[node name="RaceScene" type="Node2D" node_paths=PackedStringArray("racePositionText", "lapCounter", "startCountdown", "gameOverScreen")]
 script = ExtResource("1_t6yb8")
+racePositionText = NodePath("UI/Screen/Position")
 lapCounter = NodePath("UI/Screen/LapCounter")
 startCountdown = NodePath("UI/Screen/StartCountdown")
+gameOverScreen = NodePath("UI/GameOverScreen")
 
-[node name="Track" type="Node2D" parent="."]
+[node name="Track-Meadows" type="Node2D" parent="."]
 position = Vector2(227, 107)
 
-[node name="MainTrack" type="Path2D" parent="Track"]
-curve = SubResource("Curve2D_okxyl")
+[node name="MainTrack" type="Path2D" parent="Track-Meadows"]
+curve = SubResource("Curve2D_ig2ux")
 script = ExtResource("1_6biqv")
 entryData = SubResource("Resource_ked8j")
 exitData = SubResource("Resource_vog2j")
 
-[node name="FinishLine" type="Sprite2D" parent="Track/MainTrack"]
+[node name="FinishLine" type="Sprite2D" parent="Track-Meadows/MainTrack"]
 z_index = 2
-position = Vector2(24, 68)
-rotation = 0.432027
+position = Vector2(-4, 144)
+rotation = 0.0581094
 texture = ExtResource("4_me0gi")
 
-[node name="Image" type="Line2D" parent="Track/MainTrack"]
+[node name="Image" type="Line2D" parent="Track-Meadows/MainTrack"]
 texture = ExtResource("3_lm75x")
 texture_mode = 1
 script = ExtResource("4_av70w")
 
-[node name="Train" parent="Track/MainTrack" instance=ExtResource("5_qyn6a")]
-rotation = 1.99649
-cannon = SubResource("Resource_5gkbj")
+[node name="Train" parent="Track-Meadows/MainTrack" instance=ExtResource("5_qyn6a")]
+position = Vector2(-4, 143)
+rotation = -1.54031
+cannon = SubResource("Resource_184qh")
 metadata/_edit_lock_ = true
 
-[node name="EnemyTrain" parent="Track/MainTrack" instance=ExtResource("6_5rgaw")]
-position = Vector2(-4.15861, 149.374)
-rotation = 1.74775
+[node name="EnemyTrain" parent="Track-Meadows/MainTrack" instance=ExtResource("6_5rgaw")]
+position = Vector2(36.8865, 71.2095)
+rotation = -0.551916
 progress = 86.3474
-controller = SubResource("Resource_ndu8l")
-maxReverseSpeed = -30.0
-cannon = SubResource("Resource_7bcn3")
+controller = SubResource("Resource_l3a3m")
+cannon = SubResource("Resource_1agnl")
 metadata/_edit_lock_ = true
 
-[node name="EnemyTrain2" parent="Track/MainTrack" instance=ExtResource("6_5rgaw")]
-position = Vector2(38.7327, 220.769)
-rotation = 0.0101225
+[node name="EnemyTrain2" parent="Track-Meadows/MainTrack" instance=ExtResource("6_5rgaw")]
+position = Vector2(132.398, 53.1962)
+rotation = 0.0879084
 progress = 185.167
-controller = SubResource("Resource_uysoi")
-maxReverseSpeed = -30.0
-cannon = SubResource("Resource_hp4ed")
+controller = SubResource("Resource_wcj4g")
+cannon = SubResource("Resource_ujv61")
 metadata/_edit_lock_ = true
 
-[node name="EnemyTrain3" parent="Track/MainTrack" instance=ExtResource("6_5rgaw")]
-position = Vector2(122.243, 200.305)
-rotation = -0.261743
+[node name="EnemyTrain3" parent="Track-Meadows/MainTrack" instance=ExtResource("6_5rgaw")]
+position = Vector2(216.827, 70.7606)
+rotation = -0.0207002
 progress = 271.652
-controller = SubResource("Resource_kc5i7")
-maxReverseSpeed = -30.0
-cannon = SubResource("Resource_qcte7")
+controller = SubResource("Resource_iyd5c")
+cannon = SubResource("Resource_rb7p5")
 metadata/_edit_lock_ = true
 
-[node name="Shortcut1" type="Path2D" parent="Track"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Track-Meadows/MainTrack"]
+editor_description = "A dummy PathFollow2D that we can use to find exact distances in the editor. Can freely delete."
+position = Vector2(346.09, 266.863)
+rotation = 3.06555
+progress = 983.0
+
+[node name="Shortcut1" type="Path2D" parent="Track-Meadows"]
 position = Vector2(104, 243)
 curve = SubResource("Curve2D_63une")
 script = ExtResource("1_6biqv")
-entryData = SubResource("Resource_1hwhj")
-exitData = SubResource("Resource_qn7va")
+entryData = SubResource("Resource_wqm0h")
+exitData = SubResource("Resource_lggti")
 
-[node name="Image" type="Line2D" parent="Track/Shortcut1"]
+[node name="Image" type="Line2D" parent="Track-Meadows/Shortcut1"]
+texture = ExtResource("3_lm75x")
+texture_mode = 1
+script = ExtResource("4_av70w")
+
+[node name="Shortcut2" type="Path2D" parent="Track-Meadows"]
+curve = SubResource("Curve2D_03fm8")
+script = ExtResource("1_6biqv")
+entryData = SubResource("Resource_ayjyu")
+exitData = SubResource("Resource_8u633")
+
+[node name="Image" type="Line2D" parent="Track-Meadows/Shortcut2"]
+texture = ExtResource("3_lm75x")
+texture_mode = 1
+script = ExtResource("4_av70w")
+
+[node name="Shortcut3" type="Path2D" parent="Track-Meadows"]
+curve = SubResource("Curve2D_afrti")
+script = ExtResource("1_6biqv")
+entryData = SubResource("Resource_d3thg")
+exitData = SubResource("Resource_qnhbm")
+
+[node name="Image" type="Line2D" parent="Track-Meadows/Shortcut3"]
 texture = ExtResource("3_lm75x")
 texture_mode = 1
 script = ExtResource("4_av70w")
@@ -289,11 +445,11 @@ autostart = true
 [node name="Camera" type="Node2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(227, 107)
 script = ExtResource("6_hro7i")
-target = NodePath("../Track/MainTrack/Train")
+target = NodePath("../Track-Meadows/MainTrack/Train")
 
 [node name="Camera2D" type="Camera2D" parent="Camera"]
 position = Vector2(0, -50)
-zoom = Vector2(3, 3)
+zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 
@@ -308,14 +464,27 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
+[node name="Position" type="Label" parent="UI/Screen"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 4.0
+offset_right = 90.0
+offset_bottom = 74.0
+text = "4th"
+label_settings = SubResource("LabelSettings_4a7tb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="LapCounter" type="Label" parent="UI/Screen"]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 15.0
-offset_right = 101.0
-offset_bottom = 52.0
-text = "Lap 1"
+offset_left = 10.0
+offset_top = 63.0
+offset_right = 95.0
+offset_bottom = 101.0
+text = "Lap 1/3"
 label_settings = SubResource("LabelSettings_fhswm")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StartCountdown" type="Label" parent="UI/Screen"]
 layout_mode = 1
@@ -342,4 +511,99 @@ libraries = {
 "": SubResource("AnimationLibrary_4h26i")
 }
 
+[node name="GameOverScreen" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.588235)
+
+[node name="Content" type="Control" parent="UI/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/GameOverScreen/Content"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = -166.0
+offset_right = 266.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_6t1fd")
+
+[node name="Label2" type="Label" parent="UI/GameOverScreen/Content"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -263.0
+offset_top = -55.0
+offset_right = 267.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Your train was destroyed..."
+label_settings = SubResource("LabelSettings_kwct4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="UI/GameOverScreen/Content"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 22.0
+offset_right = 150.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_1rbkp")
+text = "Retry"
+
+[node name="Button2" type="Button" parent="UI/GameOverScreen/Content"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 127.0
+offset_right = 150.0
+offset_bottom = 207.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_1g11k")
+text = "Title Screen"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/GameOverScreen"]
+libraries = {
+"": SubResource("AnimationLibrary_kbmt4")
+}
+
+[node name="PositionUpdateTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [connection signal="timeout" from="TargetHolder/Timer" to="TargetHolder" method="OnTimerTimeout"]
+[connection signal="timeout" from="PositionUpdateTimer" to="." method="UpdatePositions"]

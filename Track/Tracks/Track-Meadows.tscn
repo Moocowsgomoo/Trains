@@ -1,0 +1,258 @@
+[gd_scene load_steps=30 format=3 uid="uid://bfkgqsxm43e65"]
+
+[ext_resource type="Script" path="res://Track/Track.cs" id="1_xd1cb"]
+[ext_resource type="Script" path="res://Track/SwitchData.cs" id="2_1frmw"]
+[ext_resource type="Texture2D" uid="uid://72gf582c2d4f" path="res://FinishLine.png" id="3_f7ilb"]
+[ext_resource type="Texture2D" uid="uid://cebuwa8t40kgt" path="res://Track/Track.png" id="4_0e0ab"]
+[ext_resource type="Script" path="res://Track/DrawCurve.cs" id="5_7jrkr"]
+[ext_resource type="PackedScene" uid="uid://5lb0t482wq50" path="res://Trains/Train.tscn" id="6_j5d0c"]
+[ext_resource type="PackedScene" uid="uid://cjcxa1f5rvwu7" path="res://Projectiles/Projectile.tscn" id="7_i2eh1"]
+[ext_resource type="Script" path="res://Trains/Cannons/Cannon.cs" id="8_1rl0s"]
+[ext_resource type="PackedScene" uid="uid://dt30uhagjuvx2" path="res://Trains/EnemyTrain.tscn" id="9_5xtk6"]
+[ext_resource type="Script" path="res://Trains/InputControllers/BasicAIInputController.cs" id="10_4kyqt"]
+
+[sub_resource type="Curve2D" id="Curve2D_ig2ux"]
+_data = {
+"points": PackedVector2Array(-2.57598, 84.4653, 2.57598, -84.4653, -4, 143, -94.9959, -32.344, 94.9959, 32.344, 192, 66, -82, 25.5, 82, -25.5, 294, -69, 0.5, -68, -0.5, 68, 504, 144, 52.5, -11.5, -52.5, 11.5, 352, 266, 61.2246, -7.85723, -61.2246, 7.85723, 175, 193, -2.48704, 134.411, 2.48704, -134.411, -4, 143)
+}
+point_count = 7
+
+[sub_resource type="Resource" id="Resource_ked8j"]
+script = ExtResource("2_1frmw")
+track = NodePath(".")
+distance = 1410.0
+direction = 3
+isFinishLine = false
+
+[sub_resource type="Resource" id="Resource_vog2j"]
+script = ExtResource("2_1frmw")
+track = NodePath(".")
+distance = 0.0
+direction = 3
+isFinishLine = true
+
+[sub_resource type="Resource" id="Resource_gwt1m"]
+resource_local_to_scene = true
+script = ExtResource("8_1rl0s")
+projectile = ExtResource("7_i2eh1")
+maxStoredShots = 1
+rechargeTime = 3.0
+shotCooldownTime = 0.5
+shotSpeed = 200.0
+trainSpdMult = 0.33
+
+[sub_resource type="Resource" id="Resource_1rq5g"]
+resource_local_to_scene = true
+script = ExtResource("10_4kyqt")
+
+[sub_resource type="Resource" id="Resource_5s0l4"]
+resource_local_to_scene = true
+script = ExtResource("8_1rl0s")
+projectile = ExtResource("7_i2eh1")
+maxStoredShots = 1
+rechargeTime = 3.0
+shotCooldownTime = 0.5
+shotSpeed = 200.0
+trainSpdMult = 0.33
+
+[sub_resource type="Resource" id="Resource_sl5y3"]
+resource_local_to_scene = true
+script = ExtResource("10_4kyqt")
+
+[sub_resource type="Resource" id="Resource_ut846"]
+resource_local_to_scene = true
+script = ExtResource("8_1rl0s")
+projectile = ExtResource("7_i2eh1")
+maxStoredShots = 1
+rechargeTime = 3.0
+shotCooldownTime = 0.5
+shotSpeed = 200.0
+trainSpdMult = 0.33
+
+[sub_resource type="Resource" id="Resource_qkj6b"]
+resource_local_to_scene = true
+script = ExtResource("10_4kyqt")
+
+[sub_resource type="Resource" id="Resource_dvcfe"]
+resource_local_to_scene = true
+script = ExtResource("8_1rl0s")
+projectile = ExtResource("7_i2eh1")
+maxStoredShots = 1
+rechargeTime = 3.0
+shotCooldownTime = 0.5
+shotSpeed = 200.0
+trainSpdMult = 0.33
+
+[sub_resource type="Curve2D" id="Curve2D_63une"]
+_data = {
+"points": PackedVector2Array(-31.4449, 12.2953, 31.4449, -12.2953, -54, -179, -30.6822, 27.1818, 30.6822, -27.1818, 71, -259, -85.627, 10.0649, 85.627, -10.0649, 203, -314)
+}
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_wqm0h"]
+script = ExtResource("2_1frmw")
+track = NodePath("../MainTrack")
+distance = 101.0
+direction = 1
+isFinishLine = false
+
+[sub_resource type="Resource" id="Resource_lggti"]
+script = ExtResource("2_1frmw")
+track = NodePath("../MainTrack")
+distance = 460.0
+direction = 1
+isFinishLine = false
+
+[sub_resource type="Curve2D" id="Curve2D_03fm8"]
+_data = {
+"points": PackedVector2Array(-7.34822, 111.419, 7.34822, -111.419, 249, 11, 142.545, -28.3733, -142.545, 28.3733, 374, 104, 34, -35.5, -34, 35.5, 453, 223)
+}
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_ayjyu"]
+script = ExtResource("2_1frmw")
+track = NodePath("../MainTrack")
+distance = 347.0
+direction = 2
+isFinishLine = false
+
+[sub_resource type="Resource" id="Resource_8u633"]
+script = ExtResource("2_1frmw")
+track = NodePath("../MainTrack")
+distance = 868.0
+direction = 2
+isFinishLine = false
+
+[sub_resource type="Curve2D" id="Curve2D_afrti"]
+_data = {
+"points": PackedVector2Array(109, -12, -109, 12, 346, 267, 55.2348, 6.30615, -55.2348, -6.30615, 170, 276, 35.5, 22.5, -35.5, -22.5, 24, 216)
+}
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_d3thg"]
+script = ExtResource("2_1frmw")
+track = NodePath("../MainTrack")
+distance = 983.0
+direction = 1
+isFinishLine = false
+
+[sub_resource type="Resource" id="Resource_qnhbm"]
+script = ExtResource("2_1frmw")
+track = NodePath("../MainTrack")
+distance = 1330.0
+direction = 1
+isFinishLine = false
+
+[node name="Track-Meadows" type="Node2D"]
+position = Vector2(227, 107)
+
+[node name="MainTrack" type="Path2D" parent="."]
+curve = SubResource("Curve2D_ig2ux")
+script = ExtResource("1_xd1cb")
+entryData = SubResource("Resource_ked8j")
+exitData = SubResource("Resource_vog2j")
+
+[node name="FinishLine" type="Sprite2D" parent="MainTrack"]
+z_index = 2
+position = Vector2(-4, 144)
+rotation = 0.0581094
+texture = ExtResource("3_f7ilb")
+
+[node name="Image" type="Line2D" parent="MainTrack"]
+texture = ExtResource("4_0e0ab")
+texture_mode = 1
+script = ExtResource("5_7jrkr")
+
+[node name="Train" parent="MainTrack" node_paths=PackedStringArray("hpBar") instance=ExtResource("6_j5d0c")]
+position = Vector2(-4, 143)
+rotation = -1.54031
+cannon = SubResource("Resource_gwt1m")
+hpBar = NodePath("")
+metadata/_edit_lock_ = true
+
+[node name="_Timer_247345" type="Timer" parent="MainTrack/Train"]
+wait_time = 0.2
+one_shot = true
+
+[node name="EnemyTrain" parent="MainTrack" node_paths=PackedStringArray("hpBar") instance=ExtResource("9_5xtk6")]
+position = Vector2(36.8866, 71.2095)
+rotation = -0.551915
+progress = 86.3474
+controller = SubResource("Resource_1rq5g")
+cannon = SubResource("Resource_5s0l4")
+hpBar = NodePath("")
+metadata/_edit_lock_ = true
+
+[node name="_Timer_247346" type="Timer" parent="MainTrack/EnemyTrain"]
+wait_time = 0.2
+one_shot = true
+
+[node name="EnemyTrain2" parent="MainTrack" node_paths=PackedStringArray("hpBar") instance=ExtResource("9_5xtk6")]
+position = Vector2(132.398, 53.1962)
+rotation = 0.0879085
+progress = 185.167
+controller = SubResource("Resource_sl5y3")
+cannon = SubResource("Resource_ut846")
+hpBar = NodePath("")
+metadata/_edit_lock_ = true
+
+[node name="_Timer_247347" type="Timer" parent="MainTrack/EnemyTrain2"]
+wait_time = 0.2
+one_shot = true
+
+[node name="EnemyTrain3" parent="MainTrack" node_paths=PackedStringArray("hpBar") instance=ExtResource("9_5xtk6")]
+position = Vector2(216.827, 70.7606)
+rotation = -0.0207017
+progress = 271.652
+controller = SubResource("Resource_qkj6b")
+cannon = SubResource("Resource_dvcfe")
+hpBar = NodePath("")
+metadata/_edit_lock_ = true
+
+[node name="_Timer_247348" type="Timer" parent="MainTrack/EnemyTrain3"]
+wait_time = 0.2
+one_shot = true
+
+[node name="PathFollow2D" type="PathFollow2D" parent="MainTrack"]
+editor_description = "A dummy PathFollow2D that we can use to find exact distances in the editor. Can freely delete."
+position = Vector2(346.09, 266.863)
+rotation = 3.06555
+progress = 983.0
+
+[node name="_Timer_247349" type="Timer" parent="MainTrack/PathFollow2D"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Shortcut1" type="Path2D" parent="."]
+position = Vector2(104, 243)
+curve = SubResource("Curve2D_63une")
+script = ExtResource("1_xd1cb")
+entryData = SubResource("Resource_wqm0h")
+exitData = SubResource("Resource_lggti")
+
+[node name="Image" type="Line2D" parent="Shortcut1"]
+texture = ExtResource("4_0e0ab")
+texture_mode = 1
+script = ExtResource("5_7jrkr")
+
+[node name="Shortcut2" type="Path2D" parent="."]
+curve = SubResource("Curve2D_03fm8")
+script = ExtResource("1_xd1cb")
+entryData = SubResource("Resource_ayjyu")
+exitData = SubResource("Resource_8u633")
+
+[node name="Image" type="Line2D" parent="Shortcut2"]
+texture = ExtResource("4_0e0ab")
+texture_mode = 1
+script = ExtResource("5_7jrkr")
+
+[node name="Shortcut3" type="Path2D" parent="."]
+curve = SubResource("Curve2D_afrti")
+script = ExtResource("1_xd1cb")
+entryData = SubResource("Resource_d3thg")
+exitData = SubResource("Resource_qnhbm")
+
+[node name="Image" type="Line2D" parent="Shortcut3"]
+texture = ExtResource("4_0e0ab")
+texture_mode = 1
+script = ExtResource("5_7jrkr")

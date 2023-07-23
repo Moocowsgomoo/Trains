@@ -9,7 +9,9 @@ public partial class FollowObject : Node2D
     public override void _Process(double delta)
     {
         base._Process(delta);
-        GlobalPosition = target.GlobalPosition + Vector2.FromAngle(target.GlobalRotation) * forwardOffset;
-        GlobalRotation = target.GlobalRotation + Mathf.DegToRad(90f);
+        if (target != null && IsInstanceValid(target)){
+            GlobalPosition = target.GlobalPosition + Vector2.FromAngle(target.GlobalRotation) * forwardOffset;
+            GlobalRotation = target.GlobalRotation + Mathf.DegToRad(90f);
+        }
     }
 }

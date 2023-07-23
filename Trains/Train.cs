@@ -10,7 +10,7 @@ public partial class Train : PathFollow2D
     float speed;
     int hp;
     float invincibilityTimer=0f;
-    [Export] bool isPlayer=false;
+    [Export] public bool isPlayer{get;private set;}=false;
     [Export] int maxHp=2;
     [Export] float maxSpeed = 50f;
     [Export] float maxReverseSpeed = -30f;
@@ -29,6 +29,9 @@ public partial class Train : PathFollow2D
         } 
         hp = maxHp;
         hpBar.Init(maxHp);
+
+        // not great code but Godot can't export lists right now so this is easiest
+        (GetTree().Root.GetChild(0) as GameManager).trains.Add(this);
     }
 
     public override void _Process(double delta)
@@ -82,15 +85,9 @@ public partial class Train : PathFollow2D
 
     void FinishLap(){
         lapsComplete++;
-        if (isPlayer){
-            if (lapsComplete >= 3) GameOver();
-            else GameManager.instance.UpdateLapCounter(lapsComplete+1);
+        if (isPlayer) {
+            GameManager.instance.UpdateLapCounter(lapsComplete+1);
         }
-    }
-
-    void GameOver(){
-        GD.Print("GAME OVER!");
-        // TODO
     }
 
     public void Boost(float mult=1f){
@@ -111,7 +108,11 @@ public partial class Train : PathFollow2D
             hpBar.UpdateHP(hp);
             invincibilityTimer = .5f;
         } 
-        if (hp <= 0) QueueFree();
+        if (hp <= 0){
+            if (isPlayer) GameManager.instance.GameOver();
+            GameManager.instance.trains.Remove(this);
+            QueueFree();
+        } 
     }
 
     public void FireCannon(){
@@ -126,6 +127,7 @@ public partial class Train : PathFollow2D
         Train otherTrain = otherBody.GetParentOrNull<Train>();
         if (otherTrain == null) return;
         float speedDiff = speed - otherTrain.speed;
+        if (track != otherTrain.track) speedDiff += maxSpeed;
         otherTrain.OnRammed(this,speedDiff + 5f);
         AddSpeed(-speedDiff - 5f);
     }
@@ -147,5 +149,9 @@ public partial class Train : PathFollow2D
 
     public void RemoveVisibleTarget(Node2D target){
         visibleTargets.Remove(target);
+    }
+
+    public float GetDistanceAlongTrack(){
+        return lapsComplete * 10000f + Progress + track.GetDistanceFromStart();
     }
 }

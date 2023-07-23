@@ -42,4 +42,9 @@ public partial class Track : Path2D
     public Track GetDestinationTrack(){
         return GetNode<Track>(exitData.track);
     }
+
+    public float GetDistanceFromStart(){
+        if (GetNode<Track>(entryData.track) == this) return 0f;
+        else return entryData.distance + GetNode<Track>(entryData.track).GetDistanceFromStart();
+    }
 }
