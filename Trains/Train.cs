@@ -10,6 +10,7 @@ public partial class Train : PathFollow2D
     float speed;
     int hp;
     float invincibilityTimer=0f;
+    public int racePosition; // received from GameManager
     [Export] public bool isPlayer{get;private set;}=false;
     [Export] int maxHp=2;
     [Export] float maxSpeed = 50f;
@@ -18,6 +19,7 @@ public partial class Train : PathFollow2D
     [Export] float boostSpeedGain = 60f;
     [Export] Cannon cannon;
     [Export] HPBar hpBar;
+    [Export] public TextureProgressBar reloadProgress;
 
     Track track{get{return GetParent<Track>();}}
 
@@ -32,6 +34,7 @@ public partial class Train : PathFollow2D
 
         // not great code but Godot can't export lists right now so this is easiest
         (GetTree().Root.GetChild(0) as GameManager).trains.Add(this);
+        if (isPlayer) (GetTree().Root.GetChild(0) as GameManager).player = this;
     }
 
     public override void _Process(double delta)
@@ -45,6 +48,7 @@ public partial class Train : PathFollow2D
             FireCannon();
         }
         invincibilityTimer -= dt;
+        if (cannon && reloadProgress != null) UpdateReloadProgress();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -77,9 +81,18 @@ public partial class Train : PathFollow2D
         else if (ProgressRatio >= 1f){
             Track dest = track.GetDestinationTrack();
             float dist = track.exitData.distance;
-            if (track.exitData.isFinishLine) FinishLap();
+            bool isFinish = track.exitData.isFinishLine;
             Reparent(dest,false);
             Progress = dist;
+            if (isFinish) FinishLap();
+        }
+    }
+
+    void UpdateReloadProgress(){
+        if (reloadProgress != null){
+            reloadProgress.Visible = true;
+            reloadProgress.Value = (1-((double) cannon.cRechargeTime / cannon.rechargeTime)) * 100;
+            reloadProgress.GetNode<Control>("Cannonball").Visible = cannon.cShots >= 1;
         }
     }
 

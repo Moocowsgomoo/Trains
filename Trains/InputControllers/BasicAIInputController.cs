@@ -19,6 +19,6 @@ public partial class BasicAIInputController : InputController
         return train.visibleTargets[rng.RandiRange(0,train.visibleTargets.Count-1)].GlobalPosition;
     }
     public override bool GetFireInput(){
-        return rng.Randf() > 0.9995f;
+        return train.racePosition > GameManager.instance.player.racePosition ? true : rng.Randf() > 0.9995f;
     }
 }

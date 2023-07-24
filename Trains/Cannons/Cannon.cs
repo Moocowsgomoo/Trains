@@ -6,13 +6,13 @@ public partial class Cannon : Resource
 {
     [Export] PackedScene projectile;
     [Export] int maxStoredShots=1;
-    [Export] float rechargeTime;
+    [Export] public float rechargeTime;
     [Export] float shotCooldownTime;
     [Export] public float shotSpeed = 200f;
     [Export] float trainSpdMult = 0.7f;
 
-    int cShots;
-    float cRechargeTime;
+    public int cShots;
+    public float cRechargeTime;
     float cShotCooldownTime;
 
     public void Process(float dt){
